@@ -1,0 +1,126 @@
+Assignment 9:-
+
+> mysql -u root -p
+
+> create database ten;
+
+> show databases;
+
+> use nine;
+
+> create table student_info(
+
+-> stud_id int primary key,
+-> stud_code int,
+-> stud_name varchar(20),
+-> subject varchar(20),
+-> marks int,
+-> phone double);
+
+> show tables;
+> desc student_info;
+> insert into student_info values(1,101,'Sham','English',68,7823467753), (2,102,'Om','Physics',70,5638561084),
+(3,103,'Raj','Maths',70,9173924659), (4,104,'Karan','Science',90,2347984356), (5,105,'Adam','Biology',92,9874327561),
+(6,106,'Kartik','Maths',85,7985343126);
+
+> select * from student_info;
+
+// Procedure without Parameter
+
+> DELIMITER &&
+> CREATE PROCEDURE get_merit_student()
+-> BEGIN
+-> select * from student_info where marks > 70;
+-> select COUNT(stud_code) AS Total_Student From student_info;
+-> END &&
+
+> CALL get_merit_student();
+-> &&
+
+// Procedure IN Parameter
+
+> DELIMITER &&
+> CREATE PROCEDURE get_student (IN var1 INT)
+-> BEGIN
+-> SELECT * FROM student_info LIMIT var1;
+-> SELECT COUNT(stud_code) AS Total_Student FROM student_info;
+-> END &&
+
+> CALL get_student(4);
+-> &&
+
+// Procedure OUT Parameter
+
+> DELIMITER &&
+> CREATE PROCEDURE display_max_mark (OUT highestmark INT)
+-> BEGIN
+-> SELECT MAX(marks) INTO highestmark FROM student_info;
+-> END &&
+> CALL display_max_mark(@M);
+-> &&
+> SELECT @M;
+-> &&
+
+// Procedure INOUT Parameter
+
+
+> DELIMITER &&
+> CREATE PROCEDURE display_marks (INOUT var1 INT)
+-> BEGIN
+-> SELECT marks INTO var1 FROM student_info WHERE stud_id = var1;
+-> END &&
+> SET @M = '3';
+-> &&
+> CALL display_marks(@M);
+-> &&
+> SELECT @M;
+-> &&
+
+
+
+
+/*
+
+
+Here's the breakdown of the provided MySQL commands:
+
+1. `mysql -u root -p`: This command is used to log in to the MySQL server with the username "root." It will prompt you to enter the password for the root user.
+
+2. `create database ten;`: This command creates a new database named "ten."
+
+3. `show databases;`: This command displays a list of all databases on the MySQL server.
+
+4. `use nine;`: This command selects the "nine" database for use. However, since the "nine" database was not created, it will result in an error.
+
+5. `create table student_info(...);`: This command creates a table named "student_info" with six columns: "stud_id" as an integer primary key, "stud_code" as an integer, "stud_name" as a varchar with a maximum length of 20 characters, "subject" as a varchar with a maximum length of 20 characters, "marks" as an integer, and "phone" as a double.
+
+6. `show tables;`: This command displays a list of all tables in the currently selected database.
+
+7. `desc student_info;`: This command describes the structure of the "student_info" table, displaying the column names and their data types.
+
+8. `insert into student_info values(...);`: This command inserts six rows into the "student_info" table. Each row represents a student's information, including their ID, code, name, subject, marks, and phone number.
+
+9. `select * from student_info;`: This command retrieves all rows from the "student_info" table, displaying the information of all students.
+
+10. `DELIMITER &&`: This command changes the delimiter to "&&" instead of the default semicolon (;). It is used to allow the definition of multi-line stored procedures.
+
+11. `CREATE PROCEDURE get_merit_student() ...`: This command creates a stored procedure named "get_merit_student" without any parameters. The procedure selects and returns the information of students who have marks greater than 70, and it also calculates and returns the total number of students.
+
+12. `CALL get_merit_student();`: This command calls the "get_merit_student" stored procedure, executing its logic and displaying the results.
+
+13. `CREATE PROCEDURE get_student (IN var1 INT) ...`: This command creates a stored procedure named "get_student" with an IN parameter "var1" of type INT. The procedure selects and returns the information of a limited number of students based on the value passed to "var1." It also calculates and returns the total number of students.
+
+14. `CALL get_student(4);`: This command calls the "get_student" stored procedure, passing the value 4 to the "var1" parameter. The procedure executes its logic and displays the results.
+
+15. `CREATE PROCEDURE display_max_mark (OUT highestmark INT) ...`: This command creates a stored procedure named "display_max_mark" with an OUT parameter "highestmark" of type INT. The procedure selects the maximum marks from the "student_info" table and assigns it to the "highestmark" parameter.
+
+16. `CALL display_max_mark(@M);`: This command calls the "display_max_mark" stored procedure, passing an OUT variable "@M" to receive the value of the "highestmark" parameter.
+
+17. `SELECT @M;`: This command displays the value of the "@M" variable, which should contain the highest mark obtained by any student.
+
+18. `CREATE PROCEDURE display_marks (INOUT var1 INT) ...`: This command creates a stored procedure named "display_marks" with an INOUT parameter "var1" of type
+
+
+
+
+*/
