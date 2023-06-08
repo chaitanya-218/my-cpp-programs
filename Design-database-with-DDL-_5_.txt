@@ -1,0 +1,40 @@
+> mysql -u root -p
+
+> create database employee;
+> show databases;
+
+> use employee;
+
+> create table employee1(
+
+-> empid int primary key,
+-> empname varchar(40),
+-> empsal int);
+> create table salary as select empid,empsal from employee1;
+> alter table employee1 add empaddress varchar(100);
+> desc employee1;
+> alter table employee1 drop column empaddress;
+> desc salary;
+>insert into employee1 values(102, 'Vijay', 1000), (103,'Sujay',3000);
+>select * from employee1;
+
+
+
+/*
+The sequence of commands you provided demonstrates a series of interactions with a MySQL database. Here's a breakdown of each step:
+
+1. `mysql -u root -p`: This command initiates a MySQL session, logging in as the user "root" and requesting a password.
+2. `create database employee;`: This creates a new database named "employee".
+3. `show databases;`: This command lists all the available databases, which should now include "employee".
+4. `use employee;`: This statement selects the "employee" database, making it the active database for subsequent operations.
+5. `create table employee1(...);`: This creates a table named "employee1" with three columns: "empid" (integer, primary key), "empname" (varchar of maximum length 40), and "empsal" (integer).
+6. `create table salary as select empid,empsal from employee1;`: This creates a new table named "salary" by selecting the "empid" and "empsal" columns from the "employee1" table.
+7. `alter table employee1 add empaddress varchar(100);`: This alters the "employee1" table to add a new column named "empaddress" with a maximum length of 100 characters.
+8. `desc employee1;`: This command describes the structure of the "employee1" table, providing information about its columns.
+9. `alter table employee1 drop column empaddress;`: This modifies the "employee1" table to remove the "empaddress" column.
+10. `desc salary;`: This command describes the structure of the "salary" table, providing information about its columns.
+11. `insert into employee1 values(...), (...);`: This inserts two rows of data into the "employee1" table with values for "empid", "empname", "empsal", and "empaddress" columns.
+12. `select * from employee1;`: This retrieves all the rows and columns from the "employee1" table, displaying the data that was inserted.
+
+These commands collectively demonstrate how to create databases, tables, alter table structures, describe table structures, insert data, and perform basic queries in MySQL
+*/
