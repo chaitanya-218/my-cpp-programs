@@ -1,0 +1,96 @@
+> mysql -u root -p
+
+> create database eleven;
+
+> show databases;
+
+> use eleven;
+
+> create table tutorials(
+
+-> id int primary key,
+-> title varchar(100),
+-> author varchar(40),
+-> date varchar(40));
+> show tables;
+> desc tutorials;
+> insert into tutorials values(1,'Java','Krishna','2019-09-01'),
+-> (2,'JFreeCharts','Satish','2019-05-01'),
+-> (3,'JavaScripts','Amit','2019-05-01'),
+-> (4,'Android','Ram','2019-03-01'),
+-> (5,'DBMS','Om','2019-04-06');
+
+> select *from tutorials;
+> create table backup(
+-> id int,
+-> title varchar(100),
+-> author varchar(40),
+-> date varchar(40));
+
+> desc backup;
+> DELIMITER //
+> CREATE PROCEDURE ExampleProc()
+-> BEGIN
+-> DECLARE done INT DEFAULT 0;
+-> DECLARE tutorialID INTEGER;
+-> DECLARE tutorialTitle, tutorialAuthor, tutorialDate VARCHAR(20);
+-> DECLARE cur CURSOR FOR SELECT * FROM tutorials;
+-> DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+-> OPEN cur;
+-> label: LOOP
+     -> FETCH cur INTO tutorialID, tutorialTitle, tutorialAuthor, tutorialDate;
+     -> INSERT INTO backup VALUES(tutorialID, tutorialTitle, tutorialAuthor, tutorialDate);
+-> IF done = 1 THEN LEAVE label;
+-> END IF;
+-> END LOOP;
+-> CLOSE cur;
+-> END//
+> DELIMITER ;
+> select * from tutorials;
+> call ExampleProc;
+> select * from backup;
+
+
+
+
+/*
+
+The series of SQL commands you provided demonstrates the creation of a database called "eleven" and two tables: "tutorials" and "backup". Here's a breakdown of each step:
+
+1. `mysql -u root -p`: This is the command to log in to MySQL as the root user. You will be prompted to enter your password.
+
+2. `create database eleven;`: This command creates a new database named "eleven".
+
+3. `show databases;`: This command displays a list of all databases on the MySQL server. You should now see the "eleven" database in the output.
+
+4. `use eleven;`: This statement selects the "eleven" database for use in subsequent queries.
+
+5. `create table tutorials...`: This command creates a table named "tutorials" within the "eleven" database. The table has four columns: "id" (integer), "title" (varchar), "author" (varchar), and "date" (varchar).
+
+6. `show tables;`: This command lists all tables in the current database. You should now see the "tutorials" table in the output.
+
+7. `desc tutorials;`: This command provides the description or structure of the "tutorials" table, displaying the column names, data types, and any constraints.
+
+8. `insert into tutorials values...`: This command inserts multiple rows of data into the "tutorials" table. Each row represents a tutorial with an ID, title, author, and date.
+
+9. `select *from tutorials;`: This query retrieves all rows from the "tutorials" table and displays the result.
+
+10. `create table backup...`: This command creates another table named "backup" within the "eleven" database. It has the same structure as the "tutorials" table.
+
+11. `desc backup;`: This command describes the structure of the "backup" table, similar to step 7.
+
+12. `DELIMITER //`: This statement changes the delimiter to "//" so that you can define the stored procedure.
+
+13. `CREATE PROCEDURE ExampleProc()...`: This block of code defines a stored procedure named "ExampleProc". It declares variables, creates a cursor to fetch data from the "tutorials" table, and inserts the fetched data into the "backup" table.
+
+14. `DELIMITER ;`: This statement changes the delimiter back to ";".
+
+15. `select * from tutorials;`: This query retrieves all rows from the "tutorials" table again and displays the result.
+
+16. `call ExampleProc;`: This command executes the stored procedure "ExampleProc", which copies the data from the "tutorials" table to the "backup" table.
+
+17. `select * from backup;`: This query retrieves all rows from the "backup" table and displays the result, showing the data that was copied from the "tutorials" table.
+
+
+
+*/
