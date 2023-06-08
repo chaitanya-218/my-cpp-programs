@@ -1,0 +1,68 @@
+> mysql -u root -p
+
+> create database eight;
+
+> use eight;
+
+> create table employee(eid int primary key,esal int,ename varchar(40),eaddress varchar(30));
+
+>insert into employee values(10,4000,'raj','pune'), (20,3000,'sam','mumbai');
+
+> create view employee1 as select eid,ename from employee where eaddress
+='pune';
+
+> desc employee1;
+> desc employee;
+> select * from employee1;
+
+> alter view employee1 as select esal from employee where eaddress = 'pune';
+> desc employee1;
+
+> desc employee;
+
+> select esal from employee where eaddress='pune';
+
+
+
+
+
+
+*/
+
+
+
+Here's the breakdown of the provided MySQL commands:
+
+1. `mysql -u root -p`: This command is used to log in to the MySQL server with the username "root." It will prompt you to enter the password for the root user.
+
+2. `create database eight;`: This command creates a new database named "eight."
+
+3. `use eight;`: This command selects the "eight" database for use.
+
+4. `create table employee(eid int primary key,esal int,ename varchar(40),eaddress varchar(30));`: This command creates a table named "employee" with four columns: "eid" as an integer primary key, "esal" as an integer, "ename" as a varchar with a maximum length of 40 characters, and "eaddress" as a varchar with a maximum length of 30 characters.
+
+5. `insert into employee values(10,4000,’raj’,’pune’), (20,3000,’sam’,’mumbai’);`: This command inserts two rows into the "employee" table. The first row has values 10, 4000, 'raj', and 'pune' for the respective columns, and the second row has values 20, 3000, 'sam', and 'mumbai'.
+
+6. `create view employee1 as select eid,ename from employee where eaddress='pune';`: This command creates a view named "employee1" based on a select query. The view includes only the "eid" and "ename" columns from the "employee" table for rows where the "eaddress" is 'pune'.
+
+7. `desc employee1;`: This command describes the structure of the "employee1" view, displaying the column names and their data types.
+
+8. `desc employee;`: This command describes the structure of the "employee" table, displaying the column names and their data types.
+
+9. `select * from employee1;`: This command retrieves all rows from the "employee1" view, displaying the values of the "eid" and "ename" columns for rows where the "eaddress" is 'pune'.
+
+10. `alter view employee1 as select esal from employee where eaddress='pune';`: This command alters the "employee1" view by changing its underlying select query. The new query selects only the "esal" column from the "employee" table for rows where the "eaddress" is 'pune'.
+
+11. `desc employee1;`: This command describes the structure of the modified "employee1" view, displaying the column name and its data type (in this case, "esal").
+
+12. `desc employee;`: This command describes the structure of the "employee" table, displaying the column names and their data types.
+
+13. `select esal from employee where eaddress='pune';`: This command retrieves the "esal" values from the "employee" table for rows where the "eaddress" is 'pune'.
+
+14. `explain`: The "explain" command is not followed by a specific query in the given sequence. In MySQL, the "explain" command is used before a query to get the execution plan of the query, showing information about how the query will be executed by the MySQL server.
+
+
+
+
+
+*/
