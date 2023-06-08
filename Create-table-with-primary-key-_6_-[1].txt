@@ -1,0 +1,112 @@
+> mysql -u root -p
+
+> create database department;
+
+> show databases;
+
+> use department;
+
+> create table dept(dno int primary key,
+
+-> dname varchar(25),
+-> floorno varchar(25));
+
+> create table emp(eid int auto_increment primary key,
+
+-> ename varchar(25) NOT NULL,
+-> addr varchar(25),
+-> city varchar(25) DEFAULT 'Pune',
+-> mob_no bigint unique,
+-> salary double(7,2),
+-> did int,
+-> constraint dept_fk foreign key(did) references dept(dno));
+> desc emp;
+> desc dept;
+> alter table emp add unique(salary);
+> desc emp;
+> alter table emp add gender char(20);
+> desc emp;
+> insert into dept values(111,'HR',2);
+> insert into dept values(112,'Admin',1);
+> insert into emp values(10,'Ram','abc','Pune',9411223344,9000,111,'male');
+
+> insert into emp values(20,'Sham','xyz','PUNE',8911223434,10000,112,'female');
+
+> select * from emp;
+
+> alter table emp drop gender;
+> select * from emp;
+
+
+/*
+It seems you have provided a series of SQL commands related to creating and modifying a database schema. Here's a breakdown of the commands and their effects:
+
+1. `mysql -u root -p`: This is the command to start the MySQL command-line interface, where you'll be prompted to enter your password for the root user.
+
+2. `create database department;`: This command creates a new database named "department".
+
+3. `show databases;`: This command displays a list of all databases in your MySQL server, including the newly created "department" database.
+
+4. `use department;`: This command switches the current database to "department", so subsequent commands will be applied to this database.
+
+5. `create table dept(dno int primary key, dname varchar(25), floorno varchar(25));`: This command creates a table named "dept" in the "department" database. It has three columns: "dno" (integer, primary key), "dname" (varchar with a maximum length of 25 characters), and "floorno" (varchar with a maximum length of 25 characters).
+
+6. `create table emp(eid int auto_increment primary key, ename varchar(25) NOT NULL, addr varchar(25), city varchar(25) DEFAULT 'Pune', mob_no bigint unique, salary double(7,2), did int, constraint dept_fk foreign key(did) references dept(dno));`: This command creates a table named "emp" in the "department" database. It has several columns with different data types, including primary key, unique, and foreign key constraints.
+
+7. `desc emp;`: This command provides a description of the "emp" table, showing the column names, data types, and constraints.
+
+8. `desc dept;`: This command provides a description of the "dept" table, showing the column names, data types, and constraints.
+
+9. `alter table emp add unique(salary);`: This command adds a unique constraint on the "salary" column in the "emp" table, ensuring that no two rows can have the same salary value.
+
+10. `desc emp;`: This command provides an updated description of the "emp" table after adding the unique constraint on the "salary" column.
+
+11. `alter table emp add gender char(20);`: This command adds a new column named "gender" of type char(20) to the "emp" table.
+
+12. `desc emp;`: This command provides an updated description of the "emp" table after adding the "gender" column.
+
+13. `insert into dept values(111,'HR',2);`: This command inserts a new row into the "dept" table with values 111, 'HR', and 2 for the "dno", "dname", and "floorno" columns, respectively.
+
+14. `insert into dept values(112,'Admin',1);`: This command inserts another row into the "dept" table with values 112, 'Admin', and 1 for the "dno", "dname", and "floorno" columns, respectively.
+
+15. `insert into emp values(10,'Ram','abc','Pune',9411223344,9000,111,'male');`: This command inserts a new row into the "emp" table with the provided values for each column.
+
+16. `insert into emp values(20,'Sham','xyz','PUNE',8911223434,10000,112,'female');`: This command inserts another row into the "emp" table with the provided values for each column.
+
+17. `select * from emp;`: This command retrieves all rows and columns from the "emp" table and displays the result.
+
+Line 6th proper explanation :-
+
+Certainly! Line 6 contains the following command:
+
+sql
+create table emp(
+    eid int auto_increment primary key,
+    ename varchar(25) NOT NULL,
+    addr varchar(25),
+    city varchar(25) DEFAULT 'Pune',
+    mob_no bigint unique,
+    salary double(7,2),
+    did int,
+    constraint dept_fk foreign key(did) references dept(dno)
+);
+
+
+This command creates a table named "emp" in the "department" database with several columns and their respective properties. Let's break down each part:
+
+- `eid int auto_increment primary key`: This column is named "eid" and has the data type "int" (integer). The keyword "auto_increment" means that the values in this column will be automatically generated and incremented for each new row. The "primary key" constraint indicates that this column uniquely identifies each row in the table.
+
+- `ename varchar(25) NOT NULL`: This column is named "ename" and has the data type "varchar(25)" which allows up to 25 characters. The "NOT NULL" constraint ensures that a value must be provided for this column, and it cannot be left empty.
+
+- `addr varchar(25)`: This column is named "addr" and has the data type "varchar(25)" which allows up to 25 characters. It does not have any constraints specified, so it can contain NULL values.
+
+- `city varchar(25) DEFAULT 'Pune'`: This column is named "city" and has the data type "varchar(25)" which allows up to 25 characters. The "DEFAULT 'Pune'" specifies that if no value is provided for this column during an insertion, it will be set to 'Pune' by default.
+
+- `mob_no bigint unique`: This column is named "mob_no" and has the data type "bigint" (big integer). The "unique" constraint ensures that each value in this column must be unique across all rows in the table.
+
+- `salary double(7,2)`: This column is named "salary" and has the data type "double(7,2)". The "(7,2)" specifies that the column can store a double-precision floating-point number with a total of 7 digits, out of which 2 digits are reserved for decimal places.
+
+- `did int`: This column is named "did" and has the data type "int" (integer). It represents the foreign key that references the "dno" column in the "dept" table.
+
+- `constraint dept_fk foreign key(did) references dept(dno)`: This constraint is named "dept_fk" and establishes a foreign key relationship between the "did" column in the "emp" table and the "dno" column in the "dept" table. It ensures referential integrity, meaning that the values in the "did" column of the "emp" table must exist as values in the "dno" column of the "dept" table.
+*/
