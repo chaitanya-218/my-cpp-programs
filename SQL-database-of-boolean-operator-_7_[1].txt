@@ -1,0 +1,87 @@
+> mysql -u root -p
+
+> create database seven;
+
+> use seven;
+
+> create table emp(empid int(3) primary key, empname varchar(10), empsal int(10), empaddress varchar(20));
+
+> insert into emp values(101, 'Ajay',10000,'pune'),(102, 'vijay',20000,'mumbai'),(103, 'jay',40000,'nashik'),(104, 'akshay',50000,'nashik');
+
+> select * from emp;
+
+> select * from emp where empsal>30000;
+
+> select * from emp where empaddress='nashik' and empsal>40000;
+
+> select * from emp where empaddress like '%pune%';
+
+> select empid,empname,empsal,empsal+100 as "empsal+100" from emp;
+
+> select sum(empsal)from emp;
+
+> select min(empsal)from emp;
+
+> select max(empsal)from emp;
+
+> select count(empsal)from emp;
+
+> select empsal from emp group by empsal;
+
+> select empsal from emp order by empsal ASC;
+
+> select now();
+
+> select date(now());
+
+> select curdate();
+
+> select date_format(curdate(),'%d,%m,%y')today;
+
+
+
+/*
+
+
+1. `mysql -u root -p`: This command is used to connect to the MySQL database as the root user and prompts for the password.
+
+2. `create database seven;`: This creates a new database named "seven".
+
+3. `use seven;`: This statement selects the "seven" database for further operations.
+
+4. `create table emp(empid int(3) primary key, empname varchar(10), empsal int(10), empaddress varchar(20));`: This creates a table named "emp" with columns empid, empname, empsal, and empaddress. The column types and sizes are specified.
+
+5. `insert into emp values(101, ‘Ajay',10000,'pune'),(102, ‘vijay',20000,'mumbai'),(103, ‘jay',40000,'nashik'),(104, ‘akshay',50000,'nashik');`: This inserts multiple rows of data into the "emp" table.
+
+6. `select * from emp;`: This retrieves all the records from the "emp" table.
+
+7. `select * from emp where empsal>30000;`: This retrieves records from the "emp" table where the empsal column is greater than 30000.
+
+8. `select * from emp where empaddress='nashik' and empsal>40000;`: This retrieves records from the "emp" table where the empaddress column is 'nashik' and the empsal column is greater than 40000.
+
+9. `select * from emp where empaddress like ‘%pune%';`: This retrieves records from the "emp" table where the empaddress column contains the substring 'pune'.
+
+10. `select empid, empname, empsal, empsal+100 as "empsal+100" from emp;`: This retrieves records from the "emp" table and calculates a new column "empsal+100" which is the sum of empsal and 100.
+
+11. `select sum(empsal) from emp;`: This calculates the sum of values in the empsal column of the "emp" table.
+
+12. `select min(empsal) from emp;`: This retrieves the minimum value in the empsal column of the "emp" table.
+
+13. `select max(empsal) from emp;`: This retrieves the maximum value in the empsal column of the "emp" table.
+
+14. `select count(empsal) from emp;`: This retrieves the count of records in the empsal column of the "emp" table.
+
+15. `select empsal from emp group by empsal;`: This retrieves distinct values from the empsal column of the "emp" table by grouping them.
+
+16. `select empsal from emp order by empsal ASC;`: This retrieves values from the empsal column of the "emp" table and sorts them in ascending order.
+
+17. `select now();`: This retrieves the current date and time.
+
+18. `select date(now());`: This retrieves the current date.
+
+19. `select curdate();`: This retrieves the current date.
+
+20. `select date_format(curdate(),'%d,%m,%y')today;`: This retrieves the current date and formats it in the specified format.
+
+
+*/
